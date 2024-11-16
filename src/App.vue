@@ -31,6 +31,27 @@ const students = ref([
     updated_at: "2024-10-18",
   },
 ]);
+
+const model = ref({
+  student: {
+    name: "",
+    course: "",
+    email: "",
+    phone: "",
+  },
+});
+
+const saveStudent = () => {
+  students.value.push({
+    id: students.value.length + 1,
+    name: model.value.student.name,
+    course: model.value.student.course,
+    email: model.value.student.email,
+    phone: model.value.student.phone,
+    created_at: new Date().toISOString().split("T")[0],
+    updated_at: new Date().toISOString().split("T")[0],
+  });
+};
 </script>
 
 <template>
@@ -91,6 +112,55 @@ const students = ref([
   </header>
   <body>
     <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <h4>Add Student</h4>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label for="">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              v-model="model.student.name"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="">Course</label>
+            <input
+              type="text"
+              class="form-control"
+              v-model="model.student.course"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="">Email</label>
+            <input
+              type="text"
+              class="form-control"
+              v-model="model.student.email"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="">Phone</label>
+            <input
+              type="text"
+              class="form-control"
+              v-model="model.student.phone"
+            />
+          </div>
+          <div class="mb3">
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="saveStudent"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div class="card">
         <div class="card-header">
           <h4>
